@@ -1,0 +1,88 @@
+
+Setting environment for using XAMPP for Windows.
+HP@ARJUNA-RAMA c:\xampp
+# mysql -u root -p
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 14
+Server version: 10.4.32-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> create database apotek;
+ERROR 1007 (HY000): Can't create database 'apotek'; database exists
+MariaDB [(none)]> use apotek;
+Database changed
+MariaDB [apotek]> create table obat_obatan;
+ERROR 1113 (42000): A table must have at least 1 column
+MariaDB [apotek]> create table obat_obatan(
+    -> id int primary key auto_increment,
+    -> kdobat varchar(10),
+    -> nama varchar(100),
+    -> berat varchar(10),
+    -> bentuk varchar(10));
+Query OK, 0 rows affected (0.049 sec)
+
+MariaDB [apotek]> insert into obat_obatan(kdobat, nama, berat, bentuk) values('ghtw', 'promag', '10mg', 'kapsul');
+Query OK, 1 row affected (0.129 sec)
+
+MariaDB [apotek]> insert into obat_obatan(kdobat, nama, berat, bentuk) values('traz', 'bodrex', '8mg', 'kapsul');
+Query OK, 1 row affected (0.040 sec)
+
+MariaDB [apotek]> insert into obat_obatan(kdobat, nama, berat, bentuk) values('traz', 'parasetamol', '8mg', 'kapsul');
+Query OK, 1 row affected (0.040 sec)
+
+MariaDB [apotek]> insert into obat_obatan(kdobat, nama, berat, bentuk) values('ghtw', 'ultraflu', '10mg', 'kapsul');
+Query OK, 1 row affected (0.040 sec)
+
+MariaDB [apotek]> show tables;
++------------------+
+| Tables_in_apotek |
++------------------+
+| obat_obatan      |
++------------------+
+1 row in set (0.038 sec)
+
+MariaDB [apotek]> select * from obat_obatan;
++----+--------+-------------+-------+--------+
+| id | kdobat | nama        | berat | bentuk |
++----+--------+-------------+-------+--------+
+|  1 | ghtw   | promag      | 10mg  | kapsul |
+|  2 | traz   | bodrex      | 8mg   | kapsul |
+|  3 | traz   | parasetamol | 8mg   | kapsul |
+|  4 | ghtw   | ultraflu    | 10mg  | kapsul |
++----+--------+-------------+-------+--------+
+4 rows in set (0.000 sec)
+
+MariaDB [apotek]> insert into obat_obatan(kdobat, nama, berat, bentuk) values('ghtw', 'baotrek', '10mg', 'kapsul');
+Query OK, 1 row affected (0.040 sec)
+
+MariaDB [apotek]> select * from obat_obatan;
++----+--------+-------------+-------+--------+
+| id | kdobat | nama        | berat | bentuk |
++----+--------+-------------+-------+--------+
+|  1 | ghtw   | promag      | 10mg  | kapsul |
+|  2 | traz   | bodrex      | 8mg   | kapsul |
+|  3 | traz   | parasetamol | 8mg   | kapsul |
+|  4 | ghtw   | ultraflu    | 10mg  | kapsul |
+|  5 | ghtw   | baotrek     | 10mg  | kapsul |
++----+--------+-------------+-------+--------+
+5 rows in set (0.000 sec)
+
+MariaDB [apotek]> delete from obat_obatan where id='2';
+Query OK, 1 row affected (0.040 sec)
+
+MariaDB [apotek]> select * from obat_obatan;
++----+--------+-------------+-------+--------+
+| id | kdobat | nama        | berat | bentuk |
++----+--------+-------------+-------+--------+
+|  1 | ghtw   | promag      | 10mg  | kapsul |
+|  3 | traz   | parasetamol | 8mg   | kapsul |
+|  4 | ghtw   | ultraflu    | 10mg  | kapsul |
+|  5 | ghtw   | baotrek     | 10mg  | kapsul |
++----+--------+-------------+-------+--------+
+4 rows in set (0.000 sec)
+
+MariaDB [apotek]>
